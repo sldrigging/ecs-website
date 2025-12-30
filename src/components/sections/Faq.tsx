@@ -11,12 +11,12 @@ const faqs = [
   {
     question: "What industries does ECS specialize in?",
     answer:
-      "ECS specializes in high-growth ecommerce sectors including consumer electronics, apparel, high-precision industrial parts, and premium lifestyle brands. Our solutions are designed for complexity and scale.",
+      "ECS specializes in high-growth ecommerce sectors including high-precision industrial parts, premium brands and much more. Our solutions are designed for complexity and scale.",
   },
   {
     question: "How does AI enhance your fulfillment process?",
     answer:
-      "We use AI for predictive inventory slotting, demand forecasting, and real-time route optimization for shipments. This integration reduces errors by 40% and increases pick-and-pack efficiency by 25%.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
   },
   {
     question: "What is the onboarding timeline for new partners?",
@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Do you offer international shipping solutions?",
     answer:
-      "Yes, we provide end-to-end international logistics, including customs brokerage, duty management, and partnerships with global carriers to ensure seamless cross-border fulfillment.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
   },
 ];
 
