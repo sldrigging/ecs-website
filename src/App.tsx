@@ -8,10 +8,15 @@ import { Services } from "@/components/sections/Services";
 import { Facilities } from "@/components/sections/Facilities";
 import { Partnership } from "@/components/sections/Partnership";
 import { About } from "@/components/sections/About";
+import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 import { TrustedLogos } from "@/components/sections/TrustedLogos";
+import { TransportSpacer } from "@/components/ui/TransportSpacer";
 
-import { SectionSpacer } from "@/components/ui/SectionSpacer";
+// Assets for spacers
+import truckImg from "./assets/truck.png";
+import shipImg from "./assets/cargo-ship.png";
+import planeImg from "./assets/plane.png";
 
 function App() {
   return (
@@ -27,64 +32,145 @@ function App() {
         {/* Hero with cinematic scroll */}
         <Hero />
 
-        {/* Stats counter section */}
-        <Stats />
-
-        {/* Cinematic spacer for industrial division */}
-        <SectionSpacer />
-
-        {/* Brand authority marquee */}
-        <TrustedLogos />
-
-        {/* Cinematic spacer for industrial division */}
-        <SectionSpacer />
-
         {/* Horizontal scroll services */}
         <Services />
+
+        <TransportSpacer image={truckImg} alt="Truck" flip />
 
         {/* Facilities with parallax */}
         <Facilities />
 
+        <TransportSpacer
+          image={shipImg}
+          alt="Cargo Ship"
+          flip
+          isSailing
+          width="w-16"
+        />
+
         {/* Partnership structure */}
         <Partnership />
+
+        <TransportSpacer
+          image={planeImg}
+          alt="Cargo Plane"
+          isFlying
+          flip
+          width="w-20"
+        />
 
         {/* About us */}
         <About />
 
+        <TransportSpacer image={truckImg} alt="Truck" flip />
+
+        {/* FAQ section */}
+        <Faq />
+
         {/* Contact form */}
         <Contact />
+
+        {/* Stats counter section */}
+        <Stats />
+
+        {/* Brand authority marquee */}
+        <TrustedLogos />
       </main>
 
       {/* Footer */}
-      <footer className="py-12 bg-[var(--color-bg-primary)] border-t border-[var(--color-steel-dark)]/30">
+      <footer className="py-20 bg-black border-t border-[var(--color-steel-dark)]/30 text-white">
         <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <span className="font-display text-3xl text-white">E</span>
-              <div className="flex flex-col text-[9px] tracking-wider text-[var(--color-steel-light)]">
-                <span>HUMAN POWERED</span>
-                <span>AI ENHANCED</span>
-                <span className="text-[var(--color-accent-orange)]">
-                  ECOMMERCE
-                </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            {/* Logo & Tagline */}
+            <div className="flex flex-col items-start gap-6">
+              <div className="flex items-center gap-3">
+                <span className="font-display text-4xl text-white">E</span>
+                <div className="flex flex-col text-[10px] tracking-wider text-[var(--color-steel-light)]">
+                  <span>HUMAN POWERED</span>
+                  <span>AI ENHANCED</span>
+                  <span className="text-[var(--color-accent-orange)]">
+                    ECOMMERCE
+                  </span>
+                </div>
+              </div>
+              <p className="text-[var(--color-steel-light)] text-sm max-w-xs">
+                Ecommerce Solutions (ECS) provides world-class logistics,
+                warehousing, and digital strategies for modern brands.
+              </p>
+            </div>
+
+            {/* Contact Info */}
+            <div className="flex flex-col gap-6">
+              <h4 className="font-display text-lg tracking-widest text-white">
+                CONTACT
+              </h4>
+              <div className="flex flex-col gap-4 text-sm text-[var(--color-steel-light)]">
+                <p className="flex items-center gap-3">
+                  <span className="text-[var(--color-accent-orange)]">E:</span>
+                  <a
+                    href="mailto:info@ecommercesolutions.com"
+                    className="hover:text-white transition-colors"
+                  >
+                    info@ecommercesolutions.com
+                  </a>
+                </p>
+                <p className="flex items-center gap-3">
+                  <span className="text-[var(--color-accent-orange)]">P:</span>
+                  <a
+                    href="tel:+15551234567"
+                    className="hover:text-white transition-colors"
+                  >
+                    +1 (555) 123-4567
+                  </a>
+                </p>
+                <p className="flex items-center gap-3">
+                  <span className="text-[var(--color-accent-orange)]">L:</span>
+                  <span>New Orleans, Louisiana</span>
+                </p>
               </div>
             </div>
 
+            {/* Social & Legal */}
+            <div className="flex flex-col gap-6 items-start md:items-end">
+              <h4 className="font-display text-lg tracking-widest text-white">
+                CONNECT
+              </h4>
+              <div className="flex items-center gap-6">
+                <a
+                  href="#"
+                  className="text-[var(--color-steel-light)] hover:text-white transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="#"
+                  className="text-[var(--color-steel-light)] hover:text-white transition-colors"
+                >
+                  Twitter
+                </a>
+                <a
+                  href="#"
+                  className="text-[var(--color-steel-light)] hover:text-white transition-colors"
+                >
+                  Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 border-t border-[var(--color-steel-dark)]/20">
             {/* Copyright */}
-            <p className="text-[var(--color-text-muted)] text-sm">
+            <p className="text-[var(--color-steel-light)] text-xs">
               &copy; {new Date().getFullYear()} ECS - Ecommerce Solutions. All
               rights reserved.
             </p>
 
-            {/* Social links placeholder */}
-            <div className="flex items-center gap-4">
-              <span className="text-[var(--color-steel-light)] text-sm hover:text-white transition-colors cursor-pointer">
-                LinkedIn
+            <div className="flex items-center gap-6 text-xs text-[var(--color-steel-light)]">
+              <span className="hover:text-white cursor-pointer transition-colors">
+                Privacy Policy
               </span>
-              <span className="text-[var(--color-steel-dark)]">|</span>
-              <span className="text-[var(--color-steel-light)] text-sm hover:text-white transition-colors cursor-pointer">
-                Twitter
+              <span className="hover:text-white cursor-pointer transition-colors">
+                Terms of Service
               </span>
             </div>
           </div>

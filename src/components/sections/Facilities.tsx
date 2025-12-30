@@ -1,191 +1,173 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { images } from "@/data/images";
-
-// Facilities data with Unsplash images
-const facilitiesData = [
-  {
-    id: "warehousing",
-    title: "Warehousing",
-    subtitle: "Receiving, Storage & Shipping",
-    description:
-      "State-of-the-art warehouse facilities equipped to handle all your ecommerce fulfillment needs. From receiving inventory to storage and shipping, we provide comprehensive solutions.",
-    image: images.warehouse1,
-  },
-  {
-    id: "production",
-    title: "Production",
-    subtitle: "From CNC Machining to Producing Coatings",
-    description:
-      "Experts in CNC swiss machining, CNC milling and turning, and management of process oriented production.",
-    image: images.production,
-  },
-];
+import { facilities } from "@/data/content";
 
 export function Facilities() {
   return (
-    <section className="relative" id="facilities">
-      <SectionTitle title="FACILITIES" />
+    <section
+      className="relative bg-[var(--color-bg-primary)] py-32 lg:py-48"
+      id="facilities"
+    >
+      <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
+        <div className="flex flex-col lg:flex-row gap-24 lg:gap-32">
+          {/* Sticky Title Column */}
+          <div className="w-full lg:w-fit lg:min-w-[200px]">
+            <div className="lg:sticky lg:top-24 h-fit">
+              <SectionTitle title="FACILITIES" align="left" size="sidebar" />
+              <div className="mt-6 hidden lg:flex flex-col items-start gap-4 text-[var(--color-steel-mid)]">
+                <div className="w-px h-16 bg-[var(--color-steel-dark)]/30" />
+              </div>
+            </div>
+          </div>
 
-      <div className="relative">
-        {facilitiesData.map((facility, index) => (
-          <FacilityPanel key={facility.id} facility={facility} index={index} />
-        ))}
+          {/* Scrolling Content Column */}
+          <div className="w-full lg:flex-1 flex flex-col gap-32 md:gap-48 lg:gap-64">
+            {facilities.map((facility, index) => (
+              <FacilityPanel
+                key={facility.id}
+                facility={facility}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
 interface FacilityPanelProps {
-  facility: (typeof facilitiesData)[number];
+  facility: (typeof facilities)[number];
   index: number;
 }
 
-function FacilityPanel({ facility, index }: FacilityPanelProps) {
+function FacilityPanel({ facility }: FacilityPanelProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
+  // Resolve image paths from images data
+  const imagePath =
+    (images as Record<string, string>)[facility.image] || facility.image;
+  const secondImagePath = facility.secondImage
+    ? (images as Record<string, string>)[facility.secondImage] || imagePath
+    : imagePath;
 
-  // Parallax effects
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
-  const imageY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-  const overlayOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.4, 0.6, 1],
-    [0.85, 0.7, 0.7, 0.85]
-  );
-  const contentY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0, 1, 1, 0]
-  );
+  // Determine if this is a dual-image layout (no points and no description)
+  const isDualImage =
+    !facility.points?.length && !facility.description && facility.secondImage;
 
-  const isEven = index % 2 === 0;
+  const imageReveal: Variants = {
+    hidden: { opacity: 0, scale: 0.95, clipPath: "inset(20% 0 20% 0)" },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      clipPath: "inset(0% 0 0% 0)",
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const textVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
+    },
+  };
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className="relative py-32 overflow-hidden min-h-[80vh] flex items-center"
+      className="relative w-full"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
     >
-      {/* Background image with parallax */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ scale: imageScale, y: imageY }}
-      >
-        <img
-          src={facility.image}
-          alt={facility.title}
-          className="w-full h-full object-cover"
-        />
-
-        {/* Gradient overlay */}
-        <motion.div
-          className="absolute inset-0 bg-[var(--color-bg-primary)]"
-          style={{ opacity: overlayOpacity }}
-        />
-
-        {/* Directional gradient based on content position */}
-        <div
-          className={`absolute inset-0 bg-gradient-to-${
-            isEven ? "r" : "l"
-          } from-[var(--color-bg-primary)] via-transparent to-transparent`}
-        />
-      </motion.div>
-
-      {/* Content */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center px-6 md:px-12 pointer-events-none"
-        style={{ y: contentY, opacity: contentOpacity }}
-      >
-        <div className="max-w-5xl w-full flex flex-col items-center text-center relative pointer-events-auto">
-          {/* Background Card - Subtle Frosted effect */}
-          <div className="absolute inset-0 -inset-x-8 md:-inset-x-12 -inset-y-8 bg-[var(--color-bg-primary)]/40 backdrop-blur-md rounded-2xl border border-white/5 -z-10" />
-
-          {/* Index */}
-          <motion.span
-            className="font-mono text-xs tracking-[0.4em] text-[var(--color-accent-orange)] mb-6 uppercase"
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+        {/* Visual Element */}
+        <div className="order-1 md:order-2">
+          <motion.div
+            className="relative aspect-video w-full max-w-[600px] mx-auto xl:ml-0 xl:mr-auto group overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)]"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8 }}
           >
-            Operation 0{index + 1}
-          </motion.span>
-
-          {/* Title */}
-          <motion.h3
-            className="font-display text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight tracking-[0.02em] w-full"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {facility.title.toUpperCase()}
-          </motion.h3>
-
-          {/* Subtitle */}
-          <motion.p
-            className="text-xl md:text-2xl text-[var(--color-accent-yellow)] mb-8 font-light tracking-wide w-full"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.8 }}
-          >
-            {facility.subtitle}
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            className="text-[var(--color-text-secondary)] text-lg md:text-xl leading-relaxed font-light w-full max-w-4xl mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            {facility.description}
-          </motion.p>
-
-          {/* Decorative line */}
-          <motion.div
-            className="h-[1px] bg-gradient-to-r from-transparent via-[var(--color-accent-orange)] to-transparent opacity-60 mt-32 w-48"
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: 192, opacity: 0.6 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 1 }}
-          />
+            <motion.div
+              className="w-full h-full"
+              variants={imageReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <img
+                src={imagePath}
+                alt={facility.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+            </motion.div>
+          </motion.div>
         </div>
-      </motion.div>
 
-      {/* Corner frame elements */}
-      <div className="absolute inset-8 pointer-events-none">
-        <div className="absolute top-0 left-0 w-12 h-12 border-l border-t border-[var(--color-steel-dark)]" />
-        <div className="absolute top-0 right-0 w-12 h-12 border-r border-t border-[var(--color-steel-dark)]" />
-        <div className="absolute bottom-0 left-0 w-12 h-12 border-l border-b border-[var(--color-steel-dark)]" />
-        <div className="absolute bottom-0 right-0 w-12 h-12 border-r border-b border-[var(--color-steel-dark)]" />
-      </div>
+        {/* Text Content */}
+        <div className="order-2 md:order-1 flex flex-col justify-center">
+          <div className="w-full max-w-xl mx-auto flex flex-col items-start text-left">
+            <motion.h3
+              className="font-display text-5xl md:text-6xl lg:text-7xl text-[var(--color-text-primary)] mb-6 leading-[1.1] tracking-tight uppercase"
+              variants={textVariants}
+            >
+              {facility.title}
+            </motion.h3>
 
-      {/* Vertical text label */}
-      <div
-        className={`absolute top-1/2 -translate-y-1/2 ${
-          isEven ? "right-8" : "left-8"
-        } hidden lg:block`}
-      >
-        <span
-          className="font-mono text-xs tracking-[0.3em] text-[var(--color-steel-dark)] whitespace-nowrap"
-          style={{
-            writingMode: "vertical-rl",
-            textOrientation: "mixed",
-            transform: isEven ? "rotate(180deg)" : "none",
-          }}
-        >
-          {facility.title.toUpperCase()}
-        </span>
+            <motion.p
+              className="text-2xl md:text-3xl text-[var(--color-accent-orange)] mb-12 font-light italic leading-snug opacity-90"
+              variants={textVariants}
+            >
+              {facility.subtitle}
+            </motion.p>
+
+            {/* Conditional Content: Points, Description, or Second Image */}
+            {facility.points && facility.points.length > 0 ? (
+              <ul className="space-y-6 w-full">
+                {facility.points.map((point, i) => (
+                  <motion.li
+                    key={i}
+                    className="flex items-start gap-6 group/item"
+                    variants={textVariants}
+                  >
+                    <span className="text-[var(--color-accent-orange)] mt-2 text-2xl font-light transition-transform group-hover/item:translate-x-1 shrink-0">
+                      ━
+                    </span>
+                    <span className="text-[var(--color-text-secondary)] text-lg md:text-xl lg:text-2xl leading-relaxed group-hover/item:text-[var(--color-text-primary)] transition-colors duration-300">
+                      {point}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            ) : facility.description ? (
+              <motion.p
+                className="text-[var(--color-text-secondary)] text-lg md:text-xl lg:text-2xl leading-relaxed font-light"
+                variants={textVariants}
+              >
+                {facility.description}
+              </motion.p>
+            ) : isDualImage ? (
+              /* Dual-image layout: Second image where content would be */
+              <motion.div
+                className="relative aspect-video w-full max-w-[500px] overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
+                variants={textVariants}
+              >
+                <img
+                  src={secondImagePath}
+                  alt={`${facility.title} detail`}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              </motion.div>
+            ) : null}
+          </div>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,142 +1,35 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { Counter } from "@/components/ui/Counter";
 import { images } from "@/data/images";
-
-const partnershipData = {
-  title: "Load Sharing",
-  subtitle: "Cost Savings For Our Clients",
-  description:
-    "Our partnership model distributes fixed costs across multiple clients, creating significant savings while maintaining premium service levels.",
-  charts: [
-    {
-      label: "Rent & Utilities",
-      percentage: 77,
-      color: "var(--color-accent-orange)",
-    },
-    {
-      label: "Admin Salaries",
-      percentage: 70,
-      color: "var(--color-accent-yellow)",
-    },
-    {
-      label: "Equipment Costs",
-      percentage: 65,
-      color: "var(--color-accent-cyan)",
-    },
-  ],
-};
+import { partnershipItems } from "@/data/content";
 
 export function Partnership() {
   return (
     <section
-      className="relative min-h-screen py-32 overflow-hidden w-full flex flex-col items-center"
+      className="relative bg-[var(--color-bg-primary)] py-24 lg:py-32"
       id="partnership"
     >
-      {/* Background image with overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={images.logistics}
-          alt="Logistics background"
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-primary)] via-[var(--color-bg-primary)]/95 to-[var(--color-bg-primary)]" />
-      </div>
-
-      <div className="relative z-10 w-full flex flex-col items-center">
-        <SectionTitle title="PARTNERSHIP STRUCTURE" />
-
-        <div className="w-full max-w-6xl px-8 md:px-16 mt-20">
-          <div className="flex flex-col gap-20 md:gap-28 items-center w-full">
-            {/* Top: Text content centered */}
-            <motion.div
-              className="text-center max-w-4xl"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <span className="inline-block font-mono text-xs tracking-[0.4em] text-[var(--color-accent-orange)] mb-6 uppercase">
-                Optimized Logistics
-              </span>
-
-              <h3 className="font-display text-4xl md:text-6xl lg:text-7xl text-white mb-8 leading-[0.95] tracking-[0.02em]">
-                {partnershipData.title.toUpperCase()}
-              </h3>
-
-              <p className="text-xl md:text-3xl text-[var(--color-accent-yellow)] mb-10 font-light tracking-wide">
-                {partnershipData.subtitle}
-              </p>
-
-              <div className="max-w-3xl mx-auto">
-                <p className="text-[var(--color-text-secondary)] text-lg md:text-xl leading-relaxed">
-                  {partnershipData.description}
-                </p>
+      <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
+        <div className="flex flex-col lg:flex-row gap-24 lg:gap-32">
+          {/* Sticky Title Column */}
+          <div className="w-full lg:w-fit lg:min-w-[200px]">
+            <div className="lg:sticky lg:top-24 h-fit">
+              <SectionTitle
+                title={"PARTNERSHIP\nSTRUCTURE"}
+                align="left"
+                size="sidebar"
+              />
+              <div className="mt-6 hidden lg:flex flex-col items-start gap-4">
+                <div className="w-px h-12 bg-[var(--color-steel-dark)]/30" />
               </div>
-            </motion.div>
-
-            {/* Bottom: Charts and Summary centered */}
-            <div className="max-w-5xl w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
-                {/* Left: Highlight box */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  className="relative p-10 lg:p-12 bg-[var(--color-bg-surface)] backdrop-blur-md border border-[var(--color-steel-dark)]/30 rounded-lg h-full flex flex-col justify-center"
-                >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-[var(--color-accent-orange)]" />
-                  <h4 className="text-white font-display text-2xl mb-8 tracking-wider uppercase text-center">
-                    Unified Methodology
-                  </h4>
-                  <p className="text-[var(--color-text-secondary)] text-lg leading-relaxed text-center">
-                    All fixed cost categories are calculated using the same
-                    efficient methodology across our entire partner network,
-                    ensuring transparency and maximum savings.
-                  </p>
-                </motion.div>
-
-                {/* Right: Charts */}
-                <motion.div
-                  className="space-y-10 py-4"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.2,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  {partnershipData.charts.map((chart, index) => (
-                    <ChartBar key={chart.label} data={chart} index={index} />
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Summary stat centered */}
-              <motion.div
-                className="pt-20 mt-20 border-t border-[var(--color-steel-dark)]/20"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
-                <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-display text-8xl md:text-[10rem] text-[var(--color-accent-orange)] drop-shadow-2xl">
-                      <Counter end={70} suffix="%" duration={2} />
-                    </span>
-                  </div>
-                  <div className="max-w-xs text-center md:text-left">
-                    <span className="text-[var(--color-accent-yellow)] text-2xl md:text-3xl font-mono tracking-tighter uppercase leading-tight inline-block">
-                      Average Cost Savings For Our Partners
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
             </div>
+          </div>
+
+          {/* Scrolling Content Column */}
+          <div className="w-full lg:flex-1 flex flex-col gap-32 md:gap-48 lg:gap-64">
+            {partnershipItems.map((item, index) => (
+              <PartnershipPanel key={item.id} item={item} index={index} />
+            ))}
           </div>
         </div>
       </div>
@@ -144,48 +37,202 @@ export function Partnership() {
   );
 }
 
-interface ChartBarProps {
-  data: { label: string; percentage: number; color: string };
+interface PartnershipPanelProps {
+  item: (typeof partnershipItems)[number];
   index: number;
 }
 
-function ChartBar({ data, index }: ChartBarProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+function PartnershipPanel({ item }: PartnershipPanelProps) {
+  // Resolve image paths
+  const imagePath = item.image
+    ? (images as Record<string, string>)[item.image] || item.image
+    : null;
+  const secondImagePath = item.secondImage
+    ? (images as Record<string, string>)[item.secondImage] || imagePath
+    : null;
+
+  // Check what content type this is
+  const hasTwoColumns = item.leftColumn && item.rightColumn;
+  const isDualImage =
+    !hasTwoColumns &&
+    !item.points?.length &&
+    !item.description &&
+    secondImagePath;
+
+  const textVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
+    },
+  };
+
+  const imageReveal: Variants = {
+    hidden: { opacity: 0, scale: 0.95, clipPath: "inset(20% 0 20% 0)" },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      clipPath: "inset(0% 0 0% 0)",
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
 
   return (
-    <div ref={ref} className="group">
-      <div className="flex justify-between items-center mb-3">
-        <span className="text-white font-medium">{data.label}</span>
-        <span className="font-mono text-[var(--color-accent-orange)]">
-          {isInView ? (
-            <Counter end={data.percentage} suffix="%" duration={1.5} />
-          ) : (
-            "0%"
-          )}
-        </span>
+    <motion.div
+      className="relative w-full"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ staggerChildren: 0.15 }}
+    >
+      {/* Title and Subtitle */}
+      <div className="mb-12">
+        <motion.h3
+          className="font-display text-5xl md:text-6xl lg:text-7xl text-[var(--color-text-primary)] mb-6 leading-[1.1] tracking-tight uppercase"
+          variants={textVariants}
+        >
+          {item.title}
+        </motion.h3>
+
+        <motion.p
+          className="text-2xl md:text-3xl text-[var(--color-accent-orange)] font-light italic leading-snug opacity-90"
+          variants={textVariants}
+        >
+          {item.subtitle}
+        </motion.p>
       </div>
 
-      <div className="relative h-3 bg-[var(--color-bg-surface)] rounded-full overflow-hidden">
-        <motion.div
-          className="absolute inset-y-0 left-0 rounded-full"
-          style={{ backgroundColor: data.color }}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${data.percentage}%` } : {}}
-          transition={{
-            duration: 1.2,
-            delay: index * 0.15,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-        />
-        {/* Shine effect */}
-        <motion.div
-          className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
-          initial={{ x: "-100%" }}
-          animate={isInView ? { x: "200%" } : {}}
-          transition={{ duration: 1.5, delay: 0.5 + index * 0.15 }}
-        />
-      </div>
-    </div>
+      {/* Description (if present) */}
+      {item.description && (
+        <motion.p
+          className="text-[var(--color-text-secondary)] text-lg md:text-xl lg:text-2xl leading-relaxed font-light mb-12 max-w-4xl"
+          variants={textVariants}
+        >
+          {item.description}
+        </motion.p>
+      )}
+
+      {/* Content Layout */}
+      {hasTwoColumns ? (
+        /* Two-column layout for bullet point lists */
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+          {/* Left Column */}
+          <motion.div variants={textVariants}>
+            {item.leftColumn!.heading && (
+              <h4 className="text-[var(--color-text-primary)] font-display text-xl md:text-2xl mb-6 tracking-wide">
+                {item.leftColumn!.heading}
+              </h4>
+            )}
+            <ul className="space-y-4">
+              {item.leftColumn!.items.map((point, i) => (
+                <li key={i} className="flex items-start gap-4 group/item">
+                  <span className="text-[var(--color-accent-orange)] mt-1 text-xl font-light shrink-0">
+                    ━
+                  </span>
+                  <span className="text-[var(--color-text-secondary)] text-lg md:text-xl leading-relaxed group-hover/item:text-[var(--color-text-primary)] transition-colors duration-300">
+                    {point}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Right Column */}
+          <motion.div variants={textVariants}>
+            {item.rightColumn!.heading && (
+              <h4 className="text-[var(--color-text-primary)] font-display text-xl md:text-2xl mb-6 tracking-wide">
+                {item.rightColumn!.heading}
+              </h4>
+            )}
+            <ul className="space-y-4">
+              {item.rightColumn!.items.map((point, i) => (
+                <li key={i} className="flex items-start gap-4 group/item">
+                  <span className="text-[var(--color-accent-orange)] mt-1 text-xl font-light shrink-0">
+                    ━
+                  </span>
+                  <span className="text-[var(--color-text-secondary)] text-lg md:text-xl leading-relaxed group-hover/item:text-[var(--color-text-primary)] transition-colors duration-300">
+                    {point}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      ) : imagePath ? (
+        /* Image layout */
+        <div
+          className={`grid grid-cols-1 ${
+            isDualImage ? "md:grid-cols-2" : ""
+          } gap-12 lg:gap-16`}
+        >
+          {/* Main Image */}
+          <motion.div
+            className="relative aspect-video w-full max-w-[600px] overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="w-full h-full"
+              variants={imageReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <img
+                src={imagePath}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Second Image (if dual-image layout) */}
+          {isDualImage && secondImagePath && (
+            <motion.div
+              className="relative aspect-video w-full max-w-[600px] overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div
+                className="w-full h-full"
+                variants={imageReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <img
+                  src={secondImagePath}
+                  alt={`${item.title} detail`}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </div>
+      ) : item.points?.length ? (
+        /* Simple bullet point list */
+        <ul className="space-y-6 max-w-2xl">
+          {item.points.map((point, i) => (
+            <motion.li
+              key={i}
+              className="flex items-start gap-6 group/item"
+              variants={textVariants}
+            >
+              <span className="text-[var(--color-accent-orange)] mt-2 text-2xl font-light transition-transform group-hover/item:translate-x-1 shrink-0">
+                ━
+              </span>
+              <span className="text-[var(--color-text-secondary)] text-lg md:text-xl lg:text-2xl leading-relaxed group-hover/item:text-[var(--color-text-primary)] transition-colors duration-300">
+                {point}
+              </span>
+            </motion.li>
+          ))}
+        </ul>
+      ) : null}
+    </motion.div>
   );
 }

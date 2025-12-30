@@ -47,9 +47,9 @@ export function SectionTitle({
 
       <motion.h2
         className={cn(
-          "font-display text-white tracking-[0.1em] uppercase leading-tight drop-shadow-2xl",
+          "font-display text-[var(--color-text-primary)] tracking-[0.1em] uppercase leading-tight drop-shadow-sm whitespace-pre-line",
           isSidebar
-            ? "text-3xl md:text-4xl lg:text-5xl"
+            ? "text-4xl md:text-5xl lg:text-7xl lg:ml-6"
             : "text-5xl md:text-7xl lg:text-8xl",
           isSidebar ? "px-0" : "px-6"
         )}
@@ -68,7 +68,7 @@ export function SectionTitle({
       {/* Bottom decorative line */}
       <motion.div
         className={cn(
-          "mt-8 md:mt-12 h-[1px] bg-gradient-to-r",
+          "mt-10 md:mt-14 h-[1px] bg-gradient-to-r",
           isSidebar ? "w-32 lg:w-48" : "w-[30vw] min-w-[200px] max-w-[600px]",
           isLeft
             ? "from-[var(--color-accent-orange)]/50 to-transparent"

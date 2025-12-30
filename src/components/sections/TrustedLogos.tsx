@@ -1,34 +1,55 @@
 import { motion } from "framer-motion";
+import { SectionTitle } from "@/components/ui/SectionTitle";
 
 export function TrustedLogos() {
   const brands = ["SHOPIFY", "BUSINESS CENTRAL", "AVALARA", "CELIGO"];
 
   return (
-    <section className="bg-[var(--color-bg-primary)] py-16 md:py-24 lg:py-32 overflow-hidden">
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="inline-block text-[12px] md:text-[14px] tracking-[0.6em] text-[var(--color-steel-mid)] font-mono uppercase mb-16 md:mb-24 opacity-60">
-            Trusted By Businesses Worldwide
-          </span>
-
-          {/* Brand Logos Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-12 md:gap-x-16 lg:gap-x-24 px-6 opacity-30">
-            {brands.map((brand) => (
-              <span
-                key={brand}
-                className="font-display text-xl md:text-2xl lg:text-3xl tracking-[0.2em] font-bold text-white hover:opacity-100 transition-opacity duration-500 cursor-default"
-              >
-                {brand}
-              </span>
-            ))}
+    <section
+      className="bg-[var(--color-bg-primary)] py-24 lg:py-32"
+      id="partners"
+    >
+      <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
+        <div className="flex flex-col lg:flex-row gap-24 lg:gap-32">
+          {/* Sticky Title Column */}
+          <div className="w-full lg:w-fit lg:min-w-[200px]">
+            <div className="lg:sticky lg:top-24 h-fit">
+              <SectionTitle title="PARTNERS" align="left" size="sidebar" />
+              <div className="mt-6 hidden lg:flex flex-col items-start gap-4">
+                <div className="w-px h-12 bg-[var(--color-steel-dark)]/30" />
+              </div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Scrolling Content Column */}
+          <div className="w-full lg:flex-1 flex flex-col items-center">
+            <motion.div
+              className="flex flex-col gap-16 items-start text-left w-full max-w-5xl"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="font-display text-4xl md:text-5xl lg:text-7xl text-[var(--color-text-primary)] leading-tight tracking-tight">
+                INTEGRATED WITH THE <br />
+                <span className="text-[var(--color-accent-orange)]">
+                  BEST PLATFORMS
+                </span>
+              </h3>
+
+              <div className="w-full flex flex-wrap items-center justify-center md:justify-start gap-x-12 gap-y-12 md:gap-x-16 lg:gap-x-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+                {brands.map((brand) => (
+                  <span
+                    key={brand}
+                    className="font-display text-xl md:text-2xl lg:text-3xl tracking-[0.2em] font-bold text-[var(--color-text-primary)] hover:text-[var(--color-accent-orange)] transition-colors duration-500 cursor-default"
+                  >
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
