@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { SplitText } from "@/components/effects/SplitText";
 import { images } from "@/data/images";
+import { GlowButton } from "@/components/ui/GlowButton";
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -56,28 +56,49 @@ export function Hero() {
           className="relative z-10 h-full flex flex-col items-center justify-center px-6"
           style={{ opacity: contentOpacity, y: contentY, scale: contentScale }}
         >
+          {/* Subtle dark backdrop for text legibility */}
+          <div className="absolute inset-x-0 h-[60%] bg-black/40 blur-3xl rounded-[100%] z-[-1]" />
+
           {/* Main headline */}
           <div className="text-center w-full">
-            <p className="text-white text-3xl md:text-4xl font-bold tracking-[0.4em] mb-6 md:mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] uppercase">
+            <motion.p
+              className="text-white text-3xl md:text-4xl font-bold tracking-[0.4em] mb-6 md:mb-10 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] uppercase opacity-95"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
+            >
               SPECIALIZING IN
-            </p>
-            <SplitText
-              text="ECOMMERCE"
-              className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-2xl"
-              delay={0}
-            />
+            </motion.p>
+            <motion.h1
+              className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              ECOMMERCE
+            </motion.h1>
 
-            <SplitText
-              text="WAREHOUSING"
-              className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-2xl"
-              delay={0.2}
-            />
+            <motion.h1
+              className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              WAREHOUSING
+            </motion.h1>
 
-            <SplitText
-              text={"ORDER\u00A0FULFILLMENT"}
-              className="font-display text-[6.5vw] md:text-[4.5vw] lg:text-[3.5vw] leading-[0.9] text-[var(--color-accent-orange)] mt-2 md:mt-4 drop-shadow-2xl"
-              delay={0.4}
-            />
+            <motion.h2
+              className="font-display text-[6.5vw] md:text-[4.5vw] lg:text-[3.5vw] leading-[0.9] mt-2 md:mt-4 drop-shadow-2xl bg-gradient-to-b from-[#e65100] to-[#c62828] bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              ORDER FULFILLMENT
+            </motion.h2>
+
+            <div className="mt-12 md:mt-16 flex justify-center">
+              <GlowButton />
+            </div>
           </div>
 
           {/* Scroll indicator */}

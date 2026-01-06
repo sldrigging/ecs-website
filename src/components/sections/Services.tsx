@@ -2,6 +2,7 @@ import { motion, type Variants } from "framer-motion";
 import { services } from "@/data/content";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { images } from "@/data/images";
+import { cn } from "@/lib/utils";
 
 export function Services() {
   return (
@@ -22,7 +23,7 @@ export function Services() {
           </div>
 
           {/* Scrolling Content Column */}
-          <div className="w-full lg:flex-1 flex flex-col gap-16 md:gap-24 lg:gap-32">
+          <div className="w-full lg:flex-1 flex flex-col gap-12 md:gap-16 lg:gap-20">
             {services.map((service, index) => (
               <ServicePanel key={service.id} service={service} index={index} />
             ))}
@@ -38,29 +39,30 @@ interface ServicePanelProps {
   index: number;
 }
 
-function ServicePanel({ service }: ServicePanelProps) {
-  // Mapping service IDs to "Masterpiece Grade" Unsplash images
+function ServicePanel({ service, index }: ServicePanelProps) {
+  const isEven = index % 2 === 0;
+  // Mapping service IDs to valid assets from images.ts
   const imageMap: Record<string, string> = {
     websites: images.website,
     integration: images.integration_local,
     advertising: images.analytics,
     socialMedia: images.socialMedia,
-    pressReleases: images.team, // Placeholder - user will replace
-    amazonWalmart: images.logistics, // Placeholder - user will replace
-    blastEmail: images.shipping, // Placeholder - user will replace
-    infographics: images.production,
-    videoProduction: images.forklift, // Placeholder - user will replace
-    productPhotography: images.containers, // Placeholder - user will replace
-    brandDevelopment: images.logistics, // Placeholder - user will replace
-    marketingPlans: images.warehouse1, // Placeholder - user will replace
-    warehousingService: images.shipping_local, // Placeholder - user will replace
-    pickPackShip: images.packing, // Placeholder - user will replace
-    inventoryManagement: images.assembly, // Placeholder - user will replace
-    supplyChain: images.logistics, // Placeholder - user will replace
-    packaging: images.containers, // Placeholder - user will replace
-    productionService: images.production, // Placeholder - user will replace
-    customerService: images.team, // Placeholder - user will replace
-    accounting: images.analytics, // Placeholder - user will replace
+    pressReleases: images.pressReleases,
+    amazonWalmart: images.amazonWalmart,
+    blastEmail: images.email,
+    infographics: images.infographics,
+    videoProduction: images.videoProduction,
+    productPhotography: images.prodPhotography,
+    brandDevelopment: images.brands2,
+    marketingPlans: images.marketingPlans,
+    warehousingService: images.warehouseSpace1,
+    pickPackShip: images.pickPackShip,
+    inventoryManagement: images.inventoryManagement,
+    supplyChain: images.supplyChain,
+    packaging: images.packaging,
+    productionService: images.production,
+    customerService: images.customerService,
+    accounting: images.analytics,
   };
 
   const imagePath = imageMap[service.id] || imageMap.ecommerce;
@@ -80,33 +82,13 @@ function ServicePanel({ service }: ServicePanelProps) {
     },
   };
 
-  // Landscape diagrams get widescreen treatment
-  const isLandscape = [
-    "integration",
-    "advertising",
-    "socialMedia",
-    "pressReleases",
-    "amazonWalmart",
-    "blastEmail",
-    "videoProduction",
-    "productPhotography",
-    "brandDevelopment",
-    "marketingPlans",
-    "warehousingService",
-    "pickPackShip",
-    "inventoryManagement",
-    "supplyChain",
-    "packaging",
-    "productionService",
-    "customerService",
-    "accounting",
-  ].includes(service.id);
+  const isDualImage = service.points.length === 0 && service.secondImage;
 
   const imageReveal: Variants = {
     hidden: {
       opacity: 0,
       scale: 0.95,
-      clipPath: "inset(20% 0 20% 0)",
+      clipPath: "inset(10% 0 10% 0)",
     },
     visible: {
       opacity: 1,
@@ -116,64 +98,148 @@ function ServicePanel({ service }: ServicePanelProps) {
     },
   };
 
+  const bgHighlight = isEven
+    ? "bg-white p-8 md:p-12 lg:p-16 rounded-3xl lg:rounded-r-none border border-[var(--color-steel-dark)]/5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.06)] -ml-4 md:-ml-8 lg:-ml-12 -mr-6 md:-mr-12 lg:-mr-16"
+    : "py-12 md:py-16";
+
   return (
     <motion.div
-      className="service-panel w-full"
+      className={cn("service-panel transition-all duration-500", bgHighlight)}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
       transition={{ staggerChildren: 0.15 }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-24 lg:gap-24 items-center">
-        {/* Visual Element */}
-        <div className="order-1 md:order-2">
-          <motion.div
-            className={`relative w-full mx-auto xl:ml-0 xl:mr-auto group overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] ${
-              isLandscape
-                ? "aspect-video max-w-[600px]"
-                : "aspect-[4/3] md:aspect-square max-w-[500px]"
-            }`}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              className="w-full h-full"
-              variants={imageReveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {/* Main Image */}
-              <img
-                src={imagePath}
-                alt={service.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-            </motion.div>
-          </motion.div>
+      {isDualImage ? (
+        <div className="flex flex-col gap-0">
+          {/* Header Row (Title & Subtitle) - Only for Dual Image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-24 lg:gap-24 items-end pb-12">
+            {/* Title (Left) */}
+            <div className="order-1 md:order-1">
+              <div className="w-full max-w-xl mx-auto">
+                <motion.h3
+                  className="font-display text-5xl md:text-6xl lg:text-7xl text-[var(--color-text-primary)] leading-[1.1] tracking-tight"
+                  variants={itemVariants}
+                >
+                  {service.title.toUpperCase()}
+                </motion.h3>
+              </div>
+            </div>
+
+            {/* Subtitle (Right) */}
+            <div className="order-2 md:order-2">
+              <div className="w-full max-w-[650px] mx-auto md:ml-0 md:mr-auto">
+                <motion.p
+                  className="text-2xl md:text-3xl text-[var(--color-accent-orange)] font-light italic leading-snug opacity-90 pb-2"
+                  variants={itemVariants}
+                >
+                  {service.subtitle}
+                </motion.p>
+              </div>
+            </div>
+          </div>
+
+          {/* Image Row (Dual Images) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-24 lg:gap-24 items-start">
+            {/* Main Visual Column (Right) */}
+            <div className="order-1 md:order-2">
+              <motion.div
+                className="relative w-full mx-auto md:ml-0 md:mr-auto group overflow-hidden rounded-3xl border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] max-w-[800px]"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="w-full h-full"
+                  variants={imageReveal}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                >
+                  <img
+                    src={imagePath}
+                    alt={service.title}
+                    className="w-full h-auto block transition-transform duration-1000 group-hover:scale-105"
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Secondary Visual Column (Left) */}
+            <div className="order-2 md:order-1">
+              <div className="w-full mx-auto flex flex-col items-center">
+                <motion.div
+                  className="relative w-full max-w-[800px] overflow-hidden rounded-3xl border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
+                  variants={itemVariants}
+                >
+                  <img
+                    src={secondImagePath}
+                    alt={`${service.title} detail`}
+                    className="w-full h-auto block transition-transform duration-1000 group-hover:scale-105"
+                  />
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Text Content */}
-        <div className="order-2 md:order-1 flex flex-col justify-center">
-          <div className="w-full max-w-xl mx-auto flex flex-col items-start text-left">
-            <motion.h3
-              className="font-display text-5xl md:text-6xl lg:text-7xl text-[var(--color-text-primary)] mb-6 leading-[1.1] tracking-tight"
-              variants={itemVariants}
+      ) : (
+        /* Original Standard Layout Refined */
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 lg:gap-24 items-center">
+          <div className={cn("order-2", isEven ? "md:order-2" : "md:order-1")}>
+            <motion.div
+              className={cn(
+                "relative w-full group overflow-hidden rounded-3xl border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] max-w-[800px]",
+                isEven ? "md:ml-0 md:mr-auto" : "mx-auto"
+              )}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.8 }}
             >
-              {service.title.toUpperCase()}
-            </motion.h3>
+              <motion.div
+                className="w-full h-full"
+                variants={imageReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <img
+                  src={imagePath}
+                  alt={service.title}
+                  className="w-full h-auto block transition-transform duration-1000 group-hover:scale-105"
+                />
+              </motion.div>
+            </motion.div>
+          </div>
 
-            <motion.p
-              className="text-2xl md:text-3xl text-[var(--color-accent-orange)] mb-12 font-light italic leading-snug opacity-90"
-              variants={itemVariants}
+          {/* Text Content Column */}
+          <div
+            className={cn(
+              "order-1 flex flex-col justify-center",
+              isEven ? "md:order-1" : "md:order-2"
+            )}
+          >
+            <div
+              className={cn(
+                "w-full max-w-xl flex flex-col items-start text-left",
+                isEven ? "mx-auto" : "md:ml-0 md:mr-auto"
+              )}
             >
-              {service.subtitle}
-            </motion.p>
+              <motion.h3
+                className="font-display text-5xl md:text-6xl lg:text-7xl text-[var(--color-text-primary)] mb-6 leading-[1.1] tracking-tight"
+                variants={itemVariants}
+              >
+                {service.title.toUpperCase()}
+              </motion.h3>
 
-            {/* Conditional: Bullet points OR second image */}
-            {service.points.length > 0 ? (
+              <motion.p
+                className="text-2xl md:text-3xl text-[var(--color-accent-orange)] mb-12 font-light italic leading-snug opacity-90"
+                variants={itemVariants}
+              >
+                {service.subtitle}
+              </motion.p>
+
               <ul className="space-y-8 w-full">
                 {service.points.map((point, i) => (
                   <motion.li
@@ -190,22 +256,10 @@ function ServicePanel({ service }: ServicePanelProps) {
                   </motion.li>
                 ))}
               </ul>
-            ) : (
-              /* Dual-image layout: Second image where bullets would be */
-              <motion.div
-                className="relative aspect-video w-full max-w-[500px] overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
-                variants={itemVariants}
-              >
-                <img
-                  src={secondImagePath}
-                  alt={`${service.title} detail`}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-              </motion.div>
-            )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </motion.div>
   );
 }

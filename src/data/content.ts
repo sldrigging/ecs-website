@@ -151,7 +151,7 @@ export const services: Service[] = [
     subtitle: "Registered Trademark Brands That We've Created",
     points: [],
     icon: "™️",
-    secondImage: "team", // Placeholder - user will replace
+    secondImage: "brands1",
   },
   {
     id: "marketingPlans",
@@ -173,7 +173,7 @@ export const services: Service[] = [
     subtitle: "Receiving, Storage & Shipping",
     points: [],
     icon: "🏭",
-    secondImage: "warehouse2", // Second image for dual-image layout
+    secondImage: "warehouseSpace2",
   },
   {
     id: "pickPackShip",
@@ -264,26 +264,26 @@ export const facilities: Facility[] = [
     title: "Our Facilities",
     subtitle: "87,500 Sq Ft.",
     points: ["Warehousing", "Packaging", "Pick, pack, ship", "Production"],
-    image: "warehouse1", // Placeholder - user will replace
+    image: "ourFacilities",
   },
   {
     id: "warehouseSpace",
     title: "Warehouse Space",
     subtitle: "Receiving, Storage & Shipping",
-    image: "shipping_local", // Placeholder - user will replace
-    secondImage: "warehouse2", // Dual-image layout
+    image: "warehouseSpace1",
+    secondImage: "warehouseSpace2",
   },
   {
     id: "videoStudio",
     title: "Video Studio",
     subtitle: "Professionally equipped video studio.",
-    image: "team", // Placeholder - user will replace
+    image: "videoStudio",
   },
   {
     id: "photoStudio",
     title: "Product Photography Studio",
     subtitle: "Professional product photography equipment.",
-    image: "containers", // Placeholder - user will replace
+    image: "photoStudio",
   },
   {
     id: "production",
@@ -291,7 +291,7 @@ export const facilities: Facility[] = [
     subtitle: "From CNC Machining to Producing Coatings",
     description:
       "Experts in CNC swiss machining, CNC milling and turning, and management of process oriented production.",
-    image: "assembly", // Placeholder - user will replace
+    image: "production",
   },
 ];
 
@@ -359,21 +359,21 @@ export const aboutItems: AboutItem[] = [
       "In 2018, the WebDev department was created and personnel added to write website code, manage data, manage paid search advertising and social media campaigns.",
       "Developed E-Rigging.com into an $18 million ecommerce site and the leading rigging products website in the industry.",
     ],
-    image: "warehouse1", // Placeholder - user will replace
+    image: "ourStory",
   },
   {
     id: "staff",
     title: "Staff",
     isCollage: true,
     collageImages: [
-      "team", // Placeholder images - user will replace
-      "team",
-      "team",
-      "team",
-      "team",
-      "team",
-      "team",
-      "team",
+      "staff1",
+      "staff2",
+      "staff3",
+      "staff4",
+      "staff5",
+      "staff6",
+      "staff7",
+      "staff8",
     ],
   },
 ];
@@ -421,7 +421,7 @@ export const partnershipItems: PartnershipItem[] = [
     subtitle: "Cost Savings For Our Clients",
     description:
       "Fixed Costs Are Apportioned. Other Fixed Cost Categories Are Calculated The Same Way.",
-    image: "warehouse1", // Placeholder
+    image: "loadSharing",
   },
   {
     id: "fixedCostAccounts",

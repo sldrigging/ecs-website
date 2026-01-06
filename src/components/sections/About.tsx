@@ -82,7 +82,7 @@ const textVariants: Variants = {
 };
 
 const imageReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.95, clipPath: "inset(20% 0 20% 0)" },
+  hidden: { opacity: 0, scale: 0.95, clipPath: "inset(10% 0 10% 0)" },
   visible: {
     opacity: 1,
     scale: 1,
@@ -98,7 +98,7 @@ export function About() {
       id="about"
     >
       <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
-        <div className="flex flex-col lg:flex-row gap-24 lg:gap-32">
+        <div className="flex flex-col lg:flex-row gap-24 lg:gap-48 xl:gap-64">
           {/* Sticky Title Column */}
           <div className="w-full lg:w-fit lg:min-w-[200px]">
             <div className="lg:sticky lg:top-24 h-fit">
@@ -110,7 +110,7 @@ export function About() {
           </div>
 
           {/* Scrolling Content Column */}
-          <div className="w-full lg:flex-1 flex flex-col gap-32 md:gap-48 lg:gap-64">
+          <div className="w-full lg:flex-1 flex flex-col gap-32 md:gap-48 lg:gap-64 lg:pl-12 xl:pl-24">
             {/* New Sections: Our Story and Staff */}
             {aboutItems.map((item) => (
               <AboutItemPanel key={item.id} item={item} />
@@ -126,7 +126,7 @@ export function About() {
             >
               {/* Text Pillar */}
               <div className="order-2 md:order-1 flex flex-col items-start text-left">
-                <div className="w-full max-w-xl mx-auto">
+                <div className="w-full max-w-4xl mx-auto md:ml-0 md:mr-auto">
                   <h3 className="font-display text-5xl md:text-6xl lg:text-7xl text-[var(--color-text-primary)] mb-6 leading-[1.1] tracking-tight uppercase">
                     HUMAN POWERED <br />
                     <span className="text-[var(--color-accent-orange)]">
@@ -288,7 +288,7 @@ function AboutItemPanel({ item }: AboutItemPanelProps) {
           {/* Image */}
           {imagePath && (
             <motion.div
-              className="relative aspect-video w-full max-w-[600px] overflow-hidden rounded-3xl bg-[#f8f9fa] border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
+              className="relative w-full max-w-[800px] overflow-hidden rounded-3xl border border-[var(--color-steel-dark)]/10 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.08)] group"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.1 }}
@@ -304,7 +304,7 @@ function AboutItemPanel({ item }: AboutItemPanelProps) {
                 <img
                   src={imagePath}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className="w-full h-auto block transition-transform duration-1000 group-hover:scale-105"
                 />
               </motion.div>
             </motion.div>
