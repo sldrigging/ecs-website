@@ -6,6 +6,7 @@ interface SectionTitleProps {
   className?: string;
   align?: "left" | "center";
   size?: "default" | "sidebar";
+  titleClassName?: string;
 }
 
 export function SectionTitle({
@@ -13,6 +14,7 @@ export function SectionTitle({
   className = "",
   align = "center",
   size = "default",
+  titleClassName = "",
 }: SectionTitleProps) {
   const isLeft = align === "left";
   const isSidebar = size === "sidebar";
@@ -51,7 +53,8 @@ export function SectionTitle({
           isSidebar
             ? "text-4xl md:text-5xl lg:text-7xl lg:ml-6"
             : "text-5xl md:text-7xl lg:text-8xl",
-          isSidebar ? "px-0" : "px-6"
+          isSidebar ? "px-0" : "px-6",
+          titleClassName
         )}
         variants={{
           hidden: { opacity: 0, scale: 0.95 },

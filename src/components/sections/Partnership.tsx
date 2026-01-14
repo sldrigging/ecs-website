@@ -7,11 +7,11 @@ import { cn } from "@/lib/utils";
 export function Partnership() {
   return (
     <section
-      className="relative bg-[var(--color-bg-primary)] py-32 lg:py-48"
+      className="relative bg-[var(--color-bg-primary)] py-12 lg:py-16"
       id="partnership"
     >
       <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
-        <div className="flex flex-col lg:flex-row gap-24 lg:gap-48 xl:gap-64">
+        <div className="flex flex-col lg:flex-row gap-24 lg:gap-32 xl:gap-40">
           {/* Sticky Title Column */}
           <div className="w-full lg:w-fit lg:min-w-[200px]">
             <div className="lg:sticky lg:top-24 h-fit">
@@ -19,6 +19,7 @@ export function Partnership() {
                 title={"PARTNERSHIP\nSTRUCTURE"}
                 align="left"
                 size="sidebar"
+                titleClassName="lg:text-[3.2rem]"
               />
               <div className="mt-6 hidden lg:flex flex-col items-start gap-4">
                 <div className="w-px h-12 bg-[var(--color-steel-dark)]/30" />
@@ -196,7 +197,7 @@ function PartnershipPanel({ item, index }: PartnershipPanelProps) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 w-full">
                   <motion.div variants={textVariants}>
                     {item.leftColumn!.heading && (
-                      <h4 className="text-[var(--color-text-primary)] font-display text-xl md:text-2xl mb-6 tracking-wide underline underline-offset-8 decoration-[var(--color-accent-orange)]/30">
+                      <h4 className="text-[var(--color-text-primary)] font-display text-xl md:text-2xl mb-6 tracking-wide border-b border-[var(--color-accent-orange)]/30 pb-4 inline-block">
                         {item.leftColumn!.heading}
                       </h4>
                     )}
@@ -219,7 +220,7 @@ function PartnershipPanel({ item, index }: PartnershipPanelProps) {
 
                   <motion.div variants={textVariants}>
                     {item.rightColumn!.heading && (
-                      <h4 className="text-[var(--color-text-primary)] font-display text-xl md:text-2xl mb-6 tracking-wide underline underline-offset-8 decoration-[var(--color-accent-orange)]/30">
+                      <h4 className="text-[var(--color-text-primary)] font-display text-xl md:text-2xl mb-6 tracking-wide border-b border-[var(--color-accent-orange)]/30 pb-4 inline-block">
                         {item.rightColumn!.heading}
                       </h4>
                     )}

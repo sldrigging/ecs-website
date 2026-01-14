@@ -9,31 +9,27 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 
 const faqs = [
   {
-    question: "What industries does ECS specialize in?",
+    question: "What industries does ES specialize in?",
     answer:
-      "ECS specializes in high-growth ecommerce sectors including high-precision industrial parts, premium brands and much more. Our solutions are designed for complexity and scale.",
+      "ES specializes in niche ecommerce sectors including high-precision and commodity industrial parts, premium technical products and much more. Our solutions are designed for complexity and scale of a variety of industry sectors.",
   },
   {
-    question: "How does AI enhance your fulfillment process?",
+    question:
+      "How does your order picking and packing process differ from others?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      "Ecommerce Solutions has refined our pick-pack-ship operation to handle loose, dense, non-labeled products with efficiency. Most 3PL companies require individual product or pack labeling which adds cost to products and lowers margins. We’re built natively to handle goods of all sizes, whether labeled or non- labeled. ",
   },
   {
     question: "What is the onboarding timeline for new partners?",
     answer:
-      "Typically, we can fully integrate a new partner within 15–30 days. This includes warehouse setup, system integrations (ERP/Storefront), and team training.",
-  },
-  {
-    question: "Do you offer international shipping solutions?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      "Typically, we can fully integrate a new partner within 30–60 days. This includes warehouse setup, system integrations (ERP/Storefront), and team training.",
   },
 ];
 
 export function Faq() {
   return (
     <section
-      className="relative bg-[var(--color-bg-primary)] py-24 lg:py-32"
+      className="relative bg-[var(--color-bg-primary)] py-12 lg:py-16"
       id="faq"
     >
       <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">

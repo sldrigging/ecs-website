@@ -40,7 +40,7 @@ export function Contact() {
 
   return (
     <section
-      className="relative bg-[var(--color-bg-primary)] py-24 lg:py-32"
+      className="relative bg-[var(--color-bg-primary)] py-12 lg:py-16"
       id="contact"
     >
       <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
@@ -73,7 +73,7 @@ export function Contact() {
 
               <p className="text-[var(--color-text-secondary)] text-xl md:text-3xl leading-relaxed font-light mb-16 max-w-5xl">
                 Ready to elevate your ecommerce operations? Get in touch with
-                our team to discuss how ECS can help optimize your fulfillment,
+                our team to discuss how ES can help optimize your fulfillment,
                 warehousing, and digital presence.
               </p>
 

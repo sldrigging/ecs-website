@@ -304,13 +304,13 @@ export const stats: Stat[] = [
   },
   {
     id: "orders",
-    value: 1000000,
+    value: 960000,
     suffix: "+",
     label: "Orders Shipped",
   },
   {
     id: "packages",
-    value: 6000,
+    value: 850,
     suffix: "",
     label: "Packages Per Day",
   },
@@ -396,7 +396,7 @@ export const partnershipItems: PartnershipItem[] = [
     title: "Operating Costs",
     subtitle: "Who Pays For What",
     leftColumn: {
-      heading: "ECS Pays – Invoices to Client:",
+      heading: "ES Pays – Invoices to Client:",
       items: [
         "Building lease & utilities – if space used",
         "All personnel & payroll taxes",
@@ -461,7 +461,7 @@ export const partnershipItems: PartnershipItem[] = [
   {
     id: "variableCostAccounts",
     title: "Variable Cost Accounts",
-    subtitle: "ECS to Manage These Expenses",
+    subtitle: "ES to Manage These Expenses",
     leftColumn: {
       heading: "Billed Directly to Client's Account",
       items: [
@@ -472,7 +472,7 @@ export const partnershipItems: PartnershipItem[] = [
       ],
     },
     rightColumn: {
-      heading: "ECS Pay & Invoice Back to Client",
+      heading: "ES Pay & Invoice Back to Client",
       items: ["Shopify – based on sales", "Credit card processing fees"],
     },
   },

@@ -94,11 +94,11 @@ const imageReveal: Variants = {
 export function About() {
   return (
     <section
-      className="relative bg-[var(--color-bg-primary)] py-24 lg:py-32"
+      className="relative bg-[var(--color-bg-primary)] py-12 lg:py-16"
       id="about"
     >
       <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">
-        <div className="flex flex-col lg:flex-row gap-24 lg:gap-48 xl:gap-64">
+        <div className="flex flex-col lg:flex-row gap-24 lg:gap-32 xl:gap-40">
           {/* Sticky Title Column */}
           <div className="w-full lg:w-fit lg:min-w-[200px]">
             <div className="lg:sticky lg:top-24 h-fit">
@@ -110,7 +110,7 @@ export function About() {
           </div>
 
           {/* Scrolling Content Column */}
-          <div className="w-full lg:flex-1 flex flex-col gap-32 md:gap-48 lg:gap-64 lg:pl-12 xl:pl-24">
+          <div className="w-full lg:flex-1 flex flex-col gap-32 lg:pl-12 xl:pl-24">
             {/* New Sections: Our Story and Staff */}
             {aboutItems.map((item) => (
               <AboutItemPanel key={item.id} item={item} />
@@ -118,7 +118,7 @@ export function About() {
 
             {/* Original "Human Powered / AI Enhanced" Section */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center mb-32"
+              className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -140,7 +140,7 @@ export function About() {
                   </p>
 
                   <p className="text-[var(--color-text-secondary)] text-lg md:text-xl lg:text-2xl leading-relaxed font-light">
-                    ECS combines 21+ years of logistics expertise with
+                    ES combines 21+ years of logistics expertise with
                     cutting-edge AI technology to deliver unparalleled
                     e-commerce fulfillment services. Our approach blends human
                     intuition with machine precision to create scalable
@@ -181,12 +181,12 @@ export function About() {
             {/* Content Below Grid */}
             <div className="w-full">
               {/* Stats within content column */}
-              <div className="mt-16 w-full grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-[var(--color-steel-dark)]/20">
+              <div className="mt-4 w-full grid grid-cols-2 md:grid-cols-4 gap-12 pt-8 border-t border-[var(--color-steel-dark)]/20">
                 {[
                   { label: "Years Experience", value: "21+" },
-                  { label: "Partner Brands", value: "50+" },
-                  { label: "Daily Shipments", value: "6K+" },
-                  { label: "Satisfaction", value: "99%" },
+                  { label: "Partner Brands", value: "20+" },
+                  { label: "Daily Shipments", value: "850+" },
+                  { label: "Satisfaction", value: "97%" },
                 ].map((stat) => (
                   <div
                     key={stat.label}

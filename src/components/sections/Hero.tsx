@@ -40,7 +40,7 @@ export function Hero() {
         >
           <img
             src={images.hero}
-            alt="ECS Warehouse Facility"
+            alt="ES Warehouse Facility"
             className="w-full h-full object-cover"
           />
 
@@ -73,7 +73,11 @@ export function Hero() {
               className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
               ECOMMERCE
             </motion.h1>
@@ -82,7 +86,11 @@ export function Hero() {
               className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
               WAREHOUSING
             </motion.h1>
@@ -91,7 +99,11 @@ export function Hero() {
               className="font-display text-[6.5vw] md:text-[4.5vw] lg:text-[3.5vw] leading-[0.9] mt-2 md:mt-4 drop-shadow-2xl bg-gradient-to-b from-[#e65100] to-[#c62828] bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
               ORDER FULFILLMENT
             </motion.h2>
@@ -109,12 +121,12 @@ export function Hero() {
             transition={{ delay: 2.2, duration: 0.8 }}
           >
             <motion.div
-              className="flex flex-col items-center text-[var(--color-steel-light)]"
+              className="flex flex-col items-center text-white font-bold"
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               <span className="text-[10px] tracking-[0.3em] mb-3">SCROLL</span>
-              <div className="w-[1px] h-12 bg-gradient-to-b from-[var(--color-steel-light)] to-transparent" />
+              <div className="w-[2px] h-12 bg-gradient-to-b from-white to-transparent" />
             </motion.div>
           </motion.div>
         </motion.div>

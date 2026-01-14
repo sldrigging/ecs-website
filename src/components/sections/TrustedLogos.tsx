@@ -6,7 +6,7 @@ export function TrustedLogos() {
 
   return (
     <section
-      className="bg-[var(--color-bg-primary)] py-24 lg:py-32"
+      className="bg-[var(--color-bg-primary)] py-12 lg:py-16"
       id="partners"
     >
       <div className="w-full pl-0 pr-6 md:pr-12 lg:pr-16">

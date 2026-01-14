@@ -94,7 +94,7 @@ function App() {
                 </div>
               </div>
               <p className="text-[var(--color-steel-light)] text-sm max-w-xs">
-                Ecommerce Solutions (ECS) provides world-class logistics,
+                Ecommerce Solutions (ES) provides world-class logistics,
                 warehousing, and digital strategies for modern brands.
               </p>
             </div>
@@ -108,19 +108,19 @@ function App() {
                 <p className="flex items-center gap-3">
                   <span className="text-[var(--color-accent-orange)]">E:</span>
                   <a
-                    href="mailto:info@ecommercesolutions.com"
+                    href="mailto:info@nolaES.com"
                     className="hover:text-white transition-colors"
                   >
-                    info@ecommercesolutions.com
+                    info@nolaES.com
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
                   <span className="text-[var(--color-accent-orange)]">P:</span>
                   <a
-                    href="tel:+15551234567"
+                    href="tel:+15047369477"
                     className="hover:text-white transition-colors"
                   >
-                    +1 (555) 123-4567
+                    +1 (504) 736-9477
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
@@ -132,11 +132,8 @@ function App() {
 
             {/* Social & Legal */}
             <div className="flex flex-col gap-6 items-start md:items-end">
-              <h4 className="font-display text-lg tracking-widest text-white">
-                CONNECT
-              </h4>
               <div className="flex items-center gap-6">
-                <a
+                {/* <a
                   href="#"
                   className="text-[var(--color-steel-light)] hover:text-white transition-colors"
                 >
@@ -153,7 +150,7 @@ function App() {
                   className="text-[var(--color-steel-light)] hover:text-white transition-colors"
                 >
                   Instagram
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -161,7 +158,7 @@ function App() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 border-t border-[var(--color-steel-dark)]/20">
             {/* Copyright */}
             <p className="text-[var(--color-steel-light)] text-xs">
-              &copy; {new Date().getFullYear()} ECS - Ecommerce Solutions. All
+              &copy; {new Date().getFullYear()} ES - Ecommerce Solutions. All
               rights reserved.
             </p>
 
