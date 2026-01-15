@@ -62,7 +62,7 @@ function ServicePanel({ service, index }: ServicePanelProps) {
     packaging: images.packaging,
     productionService: images.production,
     customerService: images.customerService,
-    accounting: images.analytics,
+    accounting: images.accounting,
   };
 
   const imagePath = imageMap[service.id] || imageMap.ecommerce;

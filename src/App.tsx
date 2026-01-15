@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { BackToTop } from "@/components/layout/BackToTop";
@@ -163,12 +164,12 @@ function App() {
             </p>
 
             <div className="flex items-center gap-6 text-xs text-[var(--color-steel-light)]">
-              <span className="hover:text-white cursor-pointer transition-colors">
+              <Link to="/privacy" className="hover:text-white transition-colors">
                 Privacy Policy
-              </span>
-              <span className="hover:text-white cursor-pointer transition-colors">
+              </Link>
+              <Link to="/terms" className="hover:text-white transition-colors">
                 Terms of Service
-              </span>
+              </Link>
             </div>
           </div>
         </div>

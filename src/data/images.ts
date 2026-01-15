@@ -22,6 +22,7 @@ import productionImg from "../assets/production.png";
 import supplyChainImg from "../assets/supply-chain.png";
 import videoProdImg from "../assets/video-prod.png";
 import amazonWalmartImg from "../assets/amazon-walmart.png";
+import accountingImg from "../assets/accounting.png";
 
 // Brand development images
 import brands1Img from "../assets/brands-1.png";
@@ -38,14 +39,14 @@ import warehousing2Img from "../assets/warehousing-2.png";
 
 // About section images
 import ourStoryImg from "../assets/our-story.png";
-import staff1Img from "../assets/staff-1.png";
-import staff2Img from "../assets/staff-2.png";
-import staff3Img from "../assets/staff-3.png";
-import staff4Img from "../assets/staff-4.png";
-import staff5Img from "../assets/staff-5.png";
-import staff6Img from "../assets/staff-6.png";
-import staff7Img from "../assets/staff-7.png";
-import staff8Img from "../assets/staff-8.png";
+import staff1Img from "../assets/staff-1.jpg";
+import staff2Img from "../assets/staff-2.jpg";
+import staff3Img from "../assets/staff-3.jpg";
+import staff4Img from "../assets/staff-4.jpg";
+import staff5Img from "../assets/staff-5.jpg";
+import staff6Img from "../assets/staff-6.jpg";
+import staff7Img from "../assets/staff-7.jpg";
+import staff8Img from "../assets/staff-8.jpg";
 
 // Partnership section images
 import loadSharingImg from "../assets/load-sharing.png";
@@ -79,6 +80,7 @@ export const images = {
   supplyChain: supplyChainImg,
   videoProduction: videoProdImg,
   amazonWalmart: amazonWalmartImg,
+  accounting: accountingImg,
 
   // Brand development
   brands1: brands1Img,

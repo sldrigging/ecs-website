@@ -118,7 +118,7 @@ export function Hero() {
             className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2.2, duration: 0.8 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
           >
             <motion.div
               className="flex flex-col items-center text-white font-bold"

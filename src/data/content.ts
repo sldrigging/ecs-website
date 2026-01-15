@@ -420,7 +420,7 @@ export const partnershipItems: PartnershipItem[] = [
     title: "Load Sharing",
     subtitle: "Cost Savings For Our Clients",
     description:
-      "Fixed Costs Are Apportioned. Other Fixed Cost Categories Are Calculated The Same Way.",
+      "Fixed costs are apportioned. Other fixed cost categories are calculated the same way.",
     image: "loadSharing",
   },
   {
