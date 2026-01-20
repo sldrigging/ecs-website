@@ -86,7 +86,7 @@ function App() {
             <div className="flex flex-col items-start gap-6">
               <div className="flex items-center gap-3">
                 <span className="font-display text-4xl text-white">E</span>
-                <div className="flex flex-col text-[10px] tracking-wider text-[var(--color-steel-light)]">
+                <div className="flex flex-col text-[10px] tracking-wider text-white">
                   <span>HUMAN POWERED</span>
                   <span>AI ENHANCED</span>
                   <span className="text-[var(--color-accent-orange)]">
@@ -94,7 +94,7 @@ function App() {
                   </span>
                 </div>
               </div>
-              <p className="text-[var(--color-steel-light)] text-sm max-w-xs">
+              <p className="text-white text-sm max-w-xs">
                 Ecommerce Solutions (ES) provides world-class logistics,
                 warehousing, and digital strategies for modern brands.
               </p>
@@ -105,7 +105,7 @@ function App() {
               <h4 className="font-display text-lg tracking-widest text-white">
                 CONTACT
               </h4>
-              <div className="flex flex-col gap-4 text-sm text-[var(--color-steel-light)]">
+              <div className="flex flex-col gap-4 text-sm text-white">
                 <p className="flex items-center gap-3">
                   <span className="text-[var(--color-accent-orange)]">E:</span>
                   <a
@@ -136,19 +136,19 @@ function App() {
               <div className="flex items-center gap-6">
                 {/* <a
                   href="#"
-                  className="text-[var(--color-steel-light)] hover:text-white transition-colors"
+                  className="text-white hover:text-white transition-colors"
                 >
                   LinkedIn
                 </a>
                 <a
                   href="#"
-                  className="text-[var(--color-steel-light)] hover:text-white transition-colors"
+                  className="text-white hover:text-white transition-colors"
                 >
                   Twitter
                 </a>
                 <a
                   href="#"
-                  className="text-[var(--color-steel-light)] hover:text-white transition-colors"
+                  className="text-white hover:text-white transition-colors"
                 >
                   Instagram
                 </a> */}
@@ -158,13 +158,16 @@ function App() {
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 border-t border-[var(--color-steel-dark)]/20">
             {/* Copyright */}
-            <p className="text-[var(--color-steel-light)] text-xs">
+            <p className="text-white text-xs">
               &copy; {new Date().getFullYear()} ES - Ecommerce Solutions. All
               rights reserved.
             </p>
 
-            <div className="flex items-center gap-6 text-xs text-[var(--color-steel-light)]">
-              <Link to="/privacy" className="hover:text-white transition-colors">
+            <div className="flex items-center gap-6 text-xs text-white">
+              <Link
+                to="/privacy"
+                className="hover:text-white transition-colors"
+              >
                 Privacy Policy
               </Link>
               <Link to="/terms" className="hover:text-white transition-colors">

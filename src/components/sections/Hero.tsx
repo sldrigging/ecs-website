@@ -17,14 +17,14 @@ export function Hero() {
   const overlayOpacity = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [0.5, 0.7, 0.9]
+    [0.5, 0.7, 0.9],
   );
 
   // Content transforms
   const contentOpacity = useTransform(
     scrollYProgress,
     [0, 0.3, 0.5],
-    [1, 1, 0]
+    [1, 1, 0],
   );
   const contentY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-15%"]);
   const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
@@ -82,8 +82,8 @@ export function Hero() {
               ECOMMERCE
             </motion.h1>
 
-            <motion.h1
-              className="font-display text-[11vw] md:text-[8vw] lg:text-[7vw] leading-[0.85] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
+            <motion.h2
+              className="font-display text-[7vw] md:text-[5vw] lg:text-[4vw] leading-[0.9] mt-2 md:mt-4 drop-shadow-2xl bg-gradient-to-b from-[#e65100] to-[#c62828] drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] bg-clip-text text-transparent"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -92,8 +92,8 @@ export function Hero() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              WAREHOUSING
-            </motion.h1>
+              FROM WEB CREATION
+            </motion.h2>
 
             <motion.h2
               className="font-display text-[6.5vw] md:text-[4.5vw] lg:text-[3.5vw] leading-[0.9] mt-2 md:mt-4 drop-shadow-2xl bg-gradient-to-b from-[#e65100] to-[#c62828] bg-clip-text text-transparent"
@@ -105,7 +105,7 @@ export function Hero() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              ORDER FULFILLMENT
+              TO ORDER FULFILLMENT
             </motion.h2>
 
             <div className="mt-12 md:mt-16 flex justify-center">
