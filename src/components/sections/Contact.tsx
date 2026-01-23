@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -24,6 +25,9 @@ const formSchema = z.object({
 });
 
 export function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,8 +38,33 @@ export function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "003e2fbf-5830-4c65-a4fc-00bae8115f3f",
+          subject: `New inquiry from ${values.name}`,
+          from_name: values.name,
+          ...values,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        form.reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -161,14 +190,27 @@ export function Contact() {
                         </FormItem>
                       )}
                     />
-                    <div className="pt-8 flex justify-center md:justify-start">
+                    <div className="pt-8 flex flex-col items-center md:items-start gap-6">
                       <Button
                         type="submit"
                         size="lg"
-                        className="w-full md:w-auto px-24 h-20 bg-[var(--color-accent-orange)] hover:bg-[#ff8a33] text-white font-display tracking-[0.2em] text-2xl rounded-2xl transition-all duration-300 transform hover:scale-[1.05] shadow-2xl shadow-orange-500/20"
+                        disabled={isSubmitting}
+                        className="w-full md:w-auto px-24 h-20 bg-[var(--color-accent-orange)] hover:bg-[#ff8a33] text-white font-display tracking-[0.2em] text-2xl rounded-2xl transition-all duration-300 transform hover:scale-[1.05] shadow-2xl shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       >
-                        SEND INQUIRY
+                        {isSubmitting ? "SENDING..." : "SEND INQUIRY"}
                       </Button>
+
+                      {submitStatus === "success" && (
+                        <p className="text-green-500 text-lg font-medium">
+                          Thank you! Your message has been sent successfully.
+                        </p>
+                      )}
+
+                      {submitStatus === "error" && (
+                        <p className="text-red-500 text-lg font-medium">
+                          Something went wrong. Please try again.
+                        </p>
+                      )}
                     </div>
                   </form>
                 </Form>
